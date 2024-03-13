@@ -1,7 +1,9 @@
 <template>
   <div id="app_main">
     <div class="top_nav">
-      <div class="nav_left"><span>茄探</span></div>
+      <div class="nav_left">
+        <div id="nav-logo" onclick="window.location='/'"></div>
+      </div>
       <div class="nav_center"></div>
       <div class="nav_right"></div>
     </div>
@@ -22,16 +24,23 @@ export default {
 .top_nav {
   display: flex;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 55px;
+  line-height: 55px;
   background-color: black;
 }
 
-.top_nav .nav_left span {
-  display: block;
-  font-size: 30px;
-  color: white;
-  margin-left: 40px;
-  z-index: 1000;
+#nav-logo {
+  background-image: url("../assets/nav-logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 140px;
+  min-height: 40px;
+  image-rendering: auto;
+  margin-left: 15px;
+}
+
+#nav-logo:hover {
+  cursor: pointer;
 }
 </style>
