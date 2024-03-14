@@ -7,10 +7,10 @@
         <div class="nav_center_left" id="nav-logo" onclick="window.location='/'"></div>
         <div class="nav_center_right">
           <div class="product_main_cuba">
-            <div class="nav_brand_name">古巴雪茄</div>
+            <div class="nav_brand_name" @click="goToCubanCigars">古巴雪茄</div>
           </div>
           <div class="product_main_world">
-            <div class="nav_brand_name">世界雪茄</div>
+            <div class="nav_brand_name" @click="goToWroldCigars">世界雪茄</div>
           </div>
           <div class="ad">
             <div class="nav_wx_ad">雪茄交流群</div>
@@ -26,12 +26,28 @@
       <div class="home_container_center">
         <div class="hot-subject">
           <ul class="sub-tab">
-            <li class="tab-item"><span>库存优先</span></li>
-            <li class="tab-item"><span>品质优先</span></li>
-            <li class="tab-item"><span>价格优先</span></li>
+            <li class="tab-item" @click="selectTab('inventory')" :class="{ 'tab-active': activeTab === 'inventory' }">
+              <span>库存优先</span></li>
+            <li class="tab-item" @click="selectTab('quality')" :class="{ 'tab-active': activeTab === 'quality' }"><span>品质优先</span>
+            </li>
+            <li class="tab-item" @click="selectTab('price')" :class="{ 'tab-active': activeTab === 'price' }">
+              <span>价格优先</span></li>
           </ul>
         </div>
-        <div class="cigar-list-box"></div>
+        <div class="cigar-list-box">
+          <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
+            <img :src="item.brand_icon" :alt="item.brand_name" style="width: 140px; height: 140px">
+            <div class="goods-info">
+              <div class="cigar-name">
+                <div class="cigar-name-cn">{{item.brand_name}}</div>
+                <div class="cigar-name-en">{{item.brand_name_en}}</div>
+              </div>
+              <div class="cigar-price"><span>￥156</span></div>
+              <div class="cigar-state"><span>库存充足</span></div>
+              <div class="cigar-detail">查看详情</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="home_container_right"></div>
     </div>
@@ -43,27 +59,39 @@ export default {
   name: 'CigarIndex',
   data() {
     return {
+      activeTab: null,
       brandArray: [{
-        "brand_id": 1,
+        "brand_id": 234,
         "brand_name": "保利華",
         "brand_name_en": "Bolivar",
-        "brand_icon": "https://webfile.timeforshares.com/product_manufacturer/1/main_image/Bolivar_450_x_300_274.jpg"
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/364/gallery/01_79.jpg?1015677382"
       }, {
-        "brand_id": 1,
-        "brand_name": "保利華",
+        "brand_id": 234,
+        "brand_name": "俱乐部",
         "brand_name_en": "Bolivar",
-        "brand_icon": "https://webfile.timeforshares.com/product_manufacturer/1/main_image/Bolivar_450_x_300_274.jpg"
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/1413/gallery/01_253.jpg?756586386"
       }, {
-        "brand_id": 1,
-        "brand_name": "保利華",
+        "brand_id": 234,
+        "brand_name": "公开赛系列迷你",
         "brand_name_en": "Bolivar",
-        "brand_icon": "https://webfile.timeforshares.com/product_manufacturer/1/main_image/Bolivar_450_x_300_274.jpg"
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/4994/gallery/01_77.jpg?637174503"
       }, {
-        "brand_id": 1,
-        "brand_name": "保利華",
+        "brand_id": 234,
+        "brand_name": "大金字塔2017限量版",
         "brand_name_en": "Bolivar",
-        "brand_icon": "https://webfile.timeforshares.com/product_manufacturer/1/main_image/Bolivar_450_x_300_274.jpg"
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
       }],
+    }
+  },
+  methods: {
+    goToCubanCigars() {
+      this.$router.push('/cuba');
+    },
+    goToWroldCigars() {
+      this.$router.push('/world');
+    },
+    selectTab(tabName) {
+      this.activeTab = tabName;
     }
   }
 }
@@ -80,7 +108,7 @@ export default {
   width: 100%;
   height: 55px;
   line-height: 55px;
-  background-color: black;
+  background-color: #f7f7f7;
 }
 
 #nav-logo {
@@ -124,25 +152,29 @@ export default {
 
 .nav_brand_name {
   width: 100%;
-  color: #f1f0de;
+  color: #535971;
   font-size: 19px;
   font-weight: bold;
   text-align: center;
 }
 
+.nav_brand_name:hover {
+  transition: all 0.5s ease 0s;
+}
+
 .nav_wx_ad {
-  color: #f1f0de;
-  font-size: 15px;
-  font-weight: bold;
+  color: #535971;
+  font-size: 16px;
 }
 
 .nav_brand_name:hover {
   cursor: pointer;
-  background-color: #6b530a;
+  color: #E6A57E;
 }
 
 .nav_wx_ad:hover {
   cursor: pointer;
+  color: #E6A57E;
 }
 
 .home_container_box {
@@ -158,32 +190,32 @@ export default {
   /*background: white;*/
 }
 
-.sub-tab{
+.sub-tab {
   display: flex;
   width: max-content;
   height: 52px;
   transform: skew(-10deg);
   align-items: center;
-  background-color: #ffd9b9;;
+  background-color: #F0EFEB;
   padding: 0 10px;
   border-radius: 12px;
 }
 
-.sub-tab li{
+.sub-tab li {
   flex-shrink: 0;
   position: relative;
   width: 200px !important;
   height: 40px;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
   margin: 0 6px;
 }
+
 .tab-item {
-  background: linear-gradient(180deg, #ffffff 0%, #fff4e5 100%);
+  background: linear-gradient(180deg, white 0%, #f7f7f7 100%);
 }
 
-.tab-item span{
+.tab-item span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,11 +224,38 @@ export default {
   transform: skew(10deg);
   font-size: 16px;
   line-height: 24px;
-  color: #a96c50;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.tab-item:hover {
+  background: #F5F5F5;
+}
+
+.tab-active span {
+  position: relative;
+  z-index: 10;
+  transform: skew(0deg);
+  font-size: 18px;
+  font-weight: 900;
+  font-style: italic;
+  color: #F9A825 !important;
+  line-height: 21px;
 }
 
 .cigar-list-box {
-  background-color: white;
-  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+
+#goods-list-item {
+  width: 100%;
+  flex: 0 0 24%;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
 </style>

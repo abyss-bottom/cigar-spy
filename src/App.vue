@@ -15,13 +15,11 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  background-color: whitesmoke;
 }
 body *,
 body *::before,
 body *::after {
   box-sizing: border-box;
-  transition: all 0.5s ease 0s;
 }
 
 li {
