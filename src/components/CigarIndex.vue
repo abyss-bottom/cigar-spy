@@ -36,15 +36,13 @@
         </div>
         <div class="cigar-list-box">
           <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
-            <img :src="item.brand_icon" :alt="item.brand_name" style="width: 140px; height: 140px">
+            <img :src="item.brand_icon" :alt="item.brand_name" style="width: 170px; height: 170px;">
             <div class="goods-info">
-              <div class="cigar-name">
-                <div class="cigar-name-cn">{{item.brand_name}}</div>
-                <div class="cigar-name-en">{{item.brand_name_en}}</div>
-              </div>
+              <div class="cigar-name-cn"><span>{{ item.brand_name }}</span></div>
+              <div class="cigar-name-en"><span>{{ item.brand_name_en }}</span></div>
               <div class="cigar-price"><span>￥156</span></div>
               <div class="cigar-state"><span>库存充足</span></div>
-              <div class="cigar-detail">查看详情</div>
+              <div class="cigar-detail"><span>查看详情</span></div>
             </div>
           </div>
         </div>
@@ -61,6 +59,86 @@ export default {
     return {
       activeTab: null,
       brandArray: [{
+        "brand_id": 234,
+        "brand_name": "保利華",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/364/gallery/01_79.jpg?1015677382"
+      }, {
+        "brand_id": 234,
+        "brand_name": "俱乐部",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/1413/gallery/01_253.jpg?756586386"
+      }, {
+        "brand_id": 234,
+        "brand_name": "公开赛系列迷你",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/4994/gallery/01_77.jpg?637174503"
+      }, {
+        "brand_id": 234,
+        "brand_name": "大金字塔2017限量版",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
+      },{
+        "brand_id": 234,
+        "brand_name": "保利華",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/364/gallery/01_79.jpg?1015677382"
+      }, {
+        "brand_id": 234,
+        "brand_name": "俱乐部",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/1413/gallery/01_253.jpg?756586386"
+      }, {
+        "brand_id": 234,
+        "brand_name": "公开赛系列迷你",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/4994/gallery/01_77.jpg?637174503"
+      }, {
+        "brand_id": 234,
+        "brand_name": "大金字塔2017限量版",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
+      },{
+        "brand_id": 234,
+        "brand_name": "保利華",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/364/gallery/01_79.jpg?1015677382"
+      }, {
+        "brand_id": 234,
+        "brand_name": "俱乐部",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/1413/gallery/01_253.jpg?756586386"
+      }, {
+        "brand_id": 234,
+        "brand_name": "公开赛系列迷你",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/4994/gallery/01_77.jpg?637174503"
+      }, {
+        "brand_id": 234,
+        "brand_name": "大金字塔2017限量版",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
+      },{
+        "brand_id": 234,
+        "brand_name": "保利華",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/364/gallery/01_79.jpg?1015677382"
+      }, {
+        "brand_id": 234,
+        "brand_name": "俱乐部",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/1413/gallery/01_253.jpg?756586386"
+      }, {
+        "brand_id": 234,
+        "brand_name": "公开赛系列迷你",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/4994/gallery/01_77.jpg?637174503"
+      }, {
+        "brand_id": 234,
+        "brand_name": "大金字塔2017限量版",
+        "brand_name_en": "Bolivar",
+        "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
+      },{
         "brand_id": 234,
         "brand_name": "保利華",
         "brand_name_en": "Bolivar",
@@ -255,7 +333,40 @@ export default {
   position: relative;
   border: 1px solid #ddd;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-bottom: 35px;
 }
 
+.goods-info {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+//justify-content: c;
+}
+
+.goods-info:hover{
+  cursor: pointer;
+}
+
+.goods-info div {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cigar-detail {
+  height: 40px;
+  border-radius: 12px;
+  margin-top: 5px;
+  width: 120px;
+  line-height: 40px;
+  background-color: green;
+}
+
+.cigar-detail span{
+  color: white;
+}
+
+.cigar-detail:hover {
+  cursor: pointer;
+}
 </style>
