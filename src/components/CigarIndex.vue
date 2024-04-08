@@ -336,7 +336,9 @@ export default {
   justify-content: flex-start;
   margin-bottom: 35px;
 }
-
+#goods-list-item:hover{
+  box-shadow: 0 0 10px #D8BFD8;
+}
 .goods-info {
   padding: 10px 0;
   display: flex;
@@ -359,11 +361,11 @@ export default {
   margin-top: 5px;
   width: 120px;
   line-height: 40px;
-  background-color: green;
+  background-color: #D57A66;
 }
 
 .cigar-detail span{
-  color: white;
+  color: black;
 }
 
 .cigar-detail:hover {
