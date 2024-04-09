@@ -36,13 +36,15 @@
         </div>
         <div class="cigar-list-box">
           <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
-            <img :src="item.brand_icon" :alt="item.brand_name" style="width: 170px; height: 170px;">
+            <img :src="item.brand_icon" :alt="item.brand_name">
             <div class="goods-info">
               <div class="cigar-name-cn"><span>{{ item.brand_name }}</span></div>
               <div class="cigar-name-en"><span>{{ item.brand_name_en }}</span></div>
               <div class="cigar-price"><span>￥156</span></div>
               <div class="cigar-state"><span>库存充足</span></div>
-              <div class="cigar-detail"><span>查看详情</span></div>
+              <div>
+                <div class="cigar-detail"><span>查看详情</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -78,7 +80,7 @@ export default {
         "brand_name": "大金字塔2017限量版",
         "brand_name_en": "Bolivar",
         "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
-      },{
+      }, {
         "brand_id": 234,
         "brand_name": "保利華",
         "brand_name_en": "Bolivar",
@@ -98,7 +100,7 @@ export default {
         "brand_name": "大金字塔2017限量版",
         "brand_name_en": "Bolivar",
         "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
-      },{
+      }, {
         "brand_id": 234,
         "brand_name": "保利華",
         "brand_name_en": "Bolivar",
@@ -118,7 +120,7 @@ export default {
         "brand_name": "大金字塔2017限量版",
         "brand_name_en": "Bolivar",
         "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
-      },{
+      }, {
         "brand_id": 234,
         "brand_name": "保利華",
         "brand_name_en": "Bolivar",
@@ -138,7 +140,7 @@ export default {
         "brand_name": "大金字塔2017限量版",
         "brand_name_en": "Bolivar",
         "brand_icon": "https://webfile.timeforshares.com/product_profile/6170/gallery/Montecristo_Master_AT_02_777.jpg?551337389"
-      },{
+      }, {
         "brand_id": 234,
         "brand_name": "保利華",
         "brand_name_en": "Bolivar",
@@ -333,20 +335,33 @@ export default {
   position: relative;
   border: 1px solid #ddd;
   display: flex;
+  align-items: center; /* 垂直居中 */
   justify-content: flex-start;
   margin-bottom: 35px;
 }
-#goods-list-item:hover{
+
+#goods-list-item img {
+  width: 170px;
+  height: 170px;
+}
+
+#goods-list-item:hover {
+  cursor: pointer;
   box-shadow: 0 0 10px #D8BFD8;
 }
+
+#goods-list-item img {
+  line-height: 100px;
+}
+
+
 .goods-info {
   padding: 10px 0;
   display: flex;
   flex-direction: column;
-//justify-content: c;
 }
 
-.goods-info:hover{
+.goods-info:hover {
   cursor: pointer;
 }
 
@@ -361,14 +376,33 @@ export default {
   margin-top: 5px;
   width: 120px;
   line-height: 40px;
-  background-color: #D57A66;
+  background-color: rgba(249, 168, 37, 0.45);
+  display: inline-block;
 }
 
-.cigar-detail span{
-  color: black;
+.cigar-detail span {
+  color: rgba(46, 41, 78, 0.81);
+  font-size: 15px;
 }
 
-.cigar-detail:hover {
-  cursor: pointer;
+.cigar-price span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #E63946;
+}
+
+.cigar-state span {
+  font-size: 15px;
+  color: #32CD32;
+}
+
+.cigar-name-cn span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cigar-name-en span {
+  font-size: 13px;
+  color: #888;
 }
 </style>
