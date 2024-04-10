@@ -63,7 +63,7 @@ export default {
   display: flex;
   align-items: center; /* 垂直居中 */
   flex-direction: column;
-  height: 300px;
+  height: 280px;
   background-color: white;
   color: inherit;
   text-decoration: inherit;

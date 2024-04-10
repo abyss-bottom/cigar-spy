@@ -212,9 +212,10 @@ export default {
 #goods-list-item {
   width: 100%;
   flex: 0 0 24%;
-  box-sizing: border-box;
+  border: 2px solid #201c00;
+  border-radius: 12px;
+  transition: box-shadow .2s linear;
   position: relative;
-  border: 1px solid #ddd;
   display: flex;
   align-items: center; /* 垂直居中 */
   justify-content: flex-start;
@@ -229,7 +230,7 @@ export default {
 
 #goods-list-item:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px #D8BFD8;
+  box-shadow: 4px 4px #000
 }
 
 #goods-list-item img {
