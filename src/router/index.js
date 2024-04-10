@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import CigarIndexLayout from "@/layouts/CigarIndexLayout.vue";
-import CigarIndex from "@/components/CigarIndex.vue";
 
 
 const routes = [
@@ -9,7 +8,8 @@ const routes = [
         component: CigarIndexLayout,
         children: [
             {
-                path: '/', component: CigarIndex
+                path: '/',
+                component: () => import('../components/CigarIndex.vue')
             },
             {
                 path: '/cuba',

@@ -1,57 +1,34 @@
 <template>
-  <div id="app_main">
-    <div class="top_nav">
-      <div class="nav_left">
+  <div style="height: 60px"></div>
+  <div class="home_container_box">
+    <div class="home_container_left"></div>
+    <div class="home_container_center">
+      <div class="hot-subject">
+        <ul class="sub-tab">
+          <li class="tab-item" @click="selectTab('inventory')" :class="{ 'tab-active': activeTab === 'inventory' }">
+            <span>库存优先</span></li>
+          <li class="tab-item" @click="selectTab('quality')" :class="{ 'tab-active': activeTab === 'quality' }"><span>品质优先</span>
+          </li>
+          <li class="tab-item" @click="selectTab('price')" :class="{ 'tab-active': activeTab === 'price' }">
+            <span>价格优先</span></li>
+        </ul>
       </div>
-      <div class="nav_center">
-        <div class="nav_center_left" id="nav-logo" onclick="window.location='/'"></div>
-        <div class="nav_center_right">
-          <div class="product_main_cuba">
-            <div class="nav_brand_name" @click="goToCubanCigars">古巴雪茄</div>
-          </div>
-          <div class="product_main_world">
-            <div class="nav_brand_name" @click="goToWroldCigars">世界雪茄</div>
-          </div>
-          <div class="ad">
-            <div class="nav_wx_ad">雪茄交流群</div>
-          </div>
-        </div>
-      </div>
-      <div class="nav_right">
-      </div>
-    </div>
-    <div style="background-color: black; width: 100%; height: 2px;"></div>
-    <div style="height: 60px"></div>
-    <div class="home_container_box">
-      <div class="home_container_left"></div>
-      <div class="home_container_center">
-        <div class="hot-subject">
-          <ul class="sub-tab">
-            <li class="tab-item" @click="selectTab('inventory')" :class="{ 'tab-active': activeTab === 'inventory' }">
-              <span>库存优先</span></li>
-            <li class="tab-item" @click="selectTab('quality')" :class="{ 'tab-active': activeTab === 'quality' }"><span>品质优先</span>
-            </li>
-            <li class="tab-item" @click="selectTab('price')" :class="{ 'tab-active': activeTab === 'price' }">
-              <span>价格优先</span></li>
-          </ul>
-        </div>
-        <div class="cigar-list-box">
-          <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
-            <img :src="item.brand_icon" :alt="item.brand_name">
-            <div class="goods-info">
-              <div class="cigar-name-cn"><span>{{ item.brand_name }}</span></div>
-              <div class="cigar-name-en"><span>{{ item.brand_name_en }}</span></div>
-              <div class="cigar-price"><span>￥156</span></div>
-              <div class="cigar-state"><span>库存充足</span></div>
-              <div>
-                <div class="cigar-detail"><span>查看详情</span></div>
-              </div>
+      <div class="cigar-list-box">
+        <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
+          <img :src="item.brand_icon" :alt="item.brand_name">
+          <div class="goods-info">
+            <div class="cigar-name-cn"><span>{{ item.brand_name }}</span></div>
+            <div class="cigar-name-en"><span>{{ item.brand_name_en }}</span></div>
+            <div class="cigar-price"><span>￥156</span></div>
+            <div class="cigar-state"><span>库存充足</span></div>
+            <div>
+              <div class="cigar-detail"><span>查看详情</span></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="home_container_right"></div>
     </div>
+    <div class="home_container_right"></div>
   </div>
 </template>
 
@@ -165,12 +142,6 @@ export default {
     }
   },
   methods: {
-    goToCubanCigars() {
-      this.$router.push('/cuba');
-    },
-    goToWroldCigars() {
-      this.$router.push('/world');
-    },
     selectTab(tabName) {
       this.activeTab = tabName;
     }
@@ -179,92 +150,16 @@ export default {
 </script>
 
 <style scoped>
-#app_main {
-  display: block;
-}
-
-.top_nav {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 70px;
-  line-height: 55px;
-  background-color: #e9f3ef;
-}
-
-#nav-logo {
-  background-image: url("../assets/nav-logo.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  width: 140px;
-  min-height: 40px;
-  image-rendering: auto;
-  margin-left: 15px;
-}
-
-#nav-logo:hover {
-  cursor: pointer;
-}
-
-.nav_left, .nav_right, .home_container_left, .home_container_right {
-  flex: 1;
-}
-
-.nav_center {
-  width: 1400px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.nav_center_right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 25%;
-}
-
-.product_main_cuba, .product_main_world, .ad {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav_brand_name {
-  width: 100%;
-  color: #535971;
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.nav_brand_name:hover {
-  transition: all 0.5s ease 0s;
-}
-
-.nav_wx_ad {
-  color: #535971;
-  font-size: 16px;
-}
-
-.nav_brand_name:hover {
-  cursor: pointer;
-}
-
-.nav_wx_ad:hover {
-  cursor: pointer;
-  color: #E6A57E;
-}
 
 .home_container_box {
   display: flex;
   width: 100%;
   min-width: 1400px;
-  padding-top: 20px;
   height: 1000px;
 }
-
+.home_container_left, .home_container_right {
+  flex: 1;
+}
 .home_container_center {
   width: 1400px;
   /*background: white;*/
