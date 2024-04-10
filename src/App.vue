@@ -32,4 +32,8 @@ li {
 ul, ol {
   list-style: none;
 }
+
+h1 {
+  font-weight: 700;
+}
 </style>

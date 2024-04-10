@@ -1,34 +1,29 @@
 <template>
-  <div style="height: 60px"></div>
-  <div class="home_container_box">
-    <div class="home_container_left"></div>
-    <div class="home_container_center">
-      <div class="hot-subject">
-        <ul class="sub-tab">
-          <li class="tab-item" @click="selectTab('inventory')" :class="{ 'tab-active': activeTab === 'inventory' }">
-            <span>库存优先</span></li>
-          <li class="tab-item" @click="selectTab('quality')" :class="{ 'tab-active': activeTab === 'quality' }"><span>品质优先</span>
-          </li>
-          <li class="tab-item" @click="selectTab('price')" :class="{ 'tab-active': activeTab === 'price' }">
-            <span>价格优先</span></li>
-        </ul>
-      </div>
-      <div class="cigar-list-box">
-        <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
-          <img :src="item.brand_icon" :alt="item.brand_name">
-          <div class="goods-info">
-            <div class="cigar-name-cn"><span>{{ item.brand_name }}</span></div>
-            <div class="cigar-name-en"><span>{{ item.brand_name_en }}</span></div>
-            <div class="cigar-price"><span>￥156</span></div>
-            <div class="cigar-state"><span>库存充足</span></div>
-            <div>
-              <div class="cigar-detail"><span>查看详情</span></div>
-            </div>
+  <div class="home_container_center">
+    <div class="hot-subject">
+      <ul class="sub-tab">
+        <li class="tab-item" @click="selectTab('inventory')" :class="{ 'tab-active': activeTab === 'inventory' }">
+          <span>库存优先</span></li>
+        <li class="tab-item" @click="selectTab('quality')" :class="{ 'tab-active': activeTab === 'quality' }"><span>品质优先</span>
+        </li>
+        <li class="tab-item" @click="selectTab('price')" :class="{ 'tab-active': activeTab === 'price' }">
+          <span>价格优先</span></li>
+      </ul>
+    </div>
+    <div class="cigar-list-box">
+      <div id="goods-list-item" v-for="item in brandArray" :key="item.brand_id">
+        <img :src="item.brand_icon" :alt="item.brand_name">
+        <div class="goods-info">
+          <div class="cigar-name-cn"><span>{{ item.brand_name }}</span></div>
+          <div class="cigar-name-en"><span>{{ item.brand_name_en }}</span></div>
+          <div class="cigar-price"><span>￥156</span></div>
+          <div class="cigar-state"><span>库存充足</span></div>
+          <div>
+            <div class="cigar-detail"><span>查看详情</span></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="home_container_right"></div>
   </div>
 </template>
 
@@ -151,18 +146,8 @@ export default {
 
 <style scoped>
 
-.home_container_box {
-  display: flex;
-  width: 100%;
-  min-width: 1400px;
-  height: 1000px;
-}
-.home_container_left, .home_container_right {
-  flex: 1;
-}
 .home_container_center {
   width: 1400px;
-  /*background: white;*/
 }
 
 .sub-tab {
