@@ -20,6 +20,7 @@
       <div class="nav_right">
       </div>
     </div>
+    <div style="background-color: black; width: 100%; height: 2px;"></div>
     <div style="height: 60px"></div>
     <div class="home_container_box">
       <div class="home_container_left"></div>
@@ -186,9 +187,9 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 55px;
+  height: 70px;
   line-height: 55px;
-  background-color: #f7f7f7;
+  background-color: #e9f3ef;
 }
 
 #nav-logo {
@@ -249,7 +250,6 @@ export default {
 
 .nav_brand_name:hover {
   cursor: pointer;
-  color: #E6A57E;
 }
 
 .nav_wx_ad:hover {
@@ -301,6 +301,7 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
+  font-weight: bold;
   transform: skew(10deg);
   font-size: 16px;
   line-height: 24px;
@@ -318,7 +319,7 @@ export default {
   font-size: 18px;
   font-weight: 900;
   font-style: italic;
-  color: #F9A825 !important;
+  color: rgba(0, 163, 143, 0.9) !important;
   line-height: 21px;
 }
 
@@ -338,6 +339,7 @@ export default {
   align-items: center; /* 垂直居中 */
   justify-content: flex-start;
   margin-bottom: 35px;
+  background-color: white;
 }
 
 #goods-list-item img {
@@ -376,12 +378,12 @@ export default {
   margin-top: 5px;
   width: 120px;
   line-height: 40px;
-  background-color: rgba(249, 168, 37, 0.45);
+  background-color: rgba(245, 222, 179, 0.83);
   display: inline-block;
 }
 
 .cigar-detail span {
-  color: rgba(46, 41, 78, 0.81);
+  color: black;
   font-size: 15px;
 }
 
@@ -393,7 +395,7 @@ export default {
 
 .cigar-state span {
   font-size: 15px;
-  color: #32CD32;
+  color: #88B04B;
 }
 
 .cigar-name-cn span {
