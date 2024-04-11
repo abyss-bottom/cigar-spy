@@ -37,9 +37,13 @@ export default {
     <div class="cuba-cigar-brand">
       <div class="cuba-cigar-brand-grid">
         <div class="grid-item-info" v-for="item in brandArray" :key="item.brand_id">
-          <div><img :src="item.brand_icon" :alt="item.brand_name"></div>
+          <div class="item-img"><img :src="item.brand_icon" :alt="item.brand_name"></div>
+          <div class="item-state">
+            <p><span style="color: #FF7F00">{{ item.brand_name}}</span> 共有20款雪茄在售</p>
+          </div>
           <div class="item-desc">
-            <span>{{ item.brand_name}}</span>
+            <div class="item-desc-name"><span>{{ item.brand_name_en}}</span></div>
+            <div class="item-desc-update"><span>更新于：2024-04-11 16:02</span></div>
           </div>
         </div>
       </div>
@@ -59,7 +63,7 @@ export default {
 }
 
 .grid-item-info {
-  padding: 10px;
+  padding: 18px;
   display: flex;
   align-items: center; /* 垂直居中 */
   flex-direction: column;
@@ -73,10 +77,33 @@ export default {
 }
 
 .grid-item-info:hover {
+  cursor: pointer;
   box-shadow: 4px 4px #000
 }
 
 .grid-item-info img{
-  height: 160px;
+  width: 100%;
+  height: 150px;
+}
+
+.item-state p{
+  color: #5C5F5E;
+}
+.item-desc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-desc-name{
+  background-color: #e9f3ef;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.item-desc-update {
+  color: #5C5F5E;
+  font-size: 13px;
 }
 </style>
