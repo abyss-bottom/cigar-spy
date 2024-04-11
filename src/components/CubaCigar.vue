@@ -1,32 +1,24 @@
 <script>
+import {getBrandData} from "@/http/api";
+
 export default {
   name: 'CubaCigar',
   data() {
     return {
-      brandArray: [{
-        "brand_id": 234,
-        "brand_name": "高希霸",
-        "brand_name_en": "Cohiba",
-        "brand_icon": "https://www.jiahaitao.com/upload/20220907/166253510010911.jpg"
-      }, {
-        "brand_id": 234,
-        "brand_name": "高希霸",
-        "brand_name_en": "Cohiba",
-        "brand_icon": "https://www.jiahaitao.com/upload/20220907/166253510010911.jpg"
-      }, {
-        "brand_id": 234,
-        "brand_name": "高希霸",
-        "brand_name_en": "Cohiba",
-        "brand_icon": "https://www.jiahaitao.com/upload/20220907/166253510010911.jpg"
-      }, {
-        "brand_id": 234,
-        "brand_name": "高希霸",
-        "brand_name_en": "Cohiba",
-        "brand_icon": "https://www.jiahaitao.com/upload/20220907/166253510010911.jpg"
-      }],
+      brandArray: null,
     }
   },
   methods: {
+    brandData() {
+      getBrandData(1).then(r => {
+        this.brandArray = r.data;
+      }).catch(e => {
+        console.log({message: e.message, type: 'error'})
+      })
+    },
+  },
+  mounted() {
+    this.brandData()
   }
 }
 </script>
@@ -37,13 +29,13 @@ export default {
     <div class="cuba-cigar-brand">
       <div class="cuba-cigar-brand-grid">
         <div class="grid-item-info" v-for="item in brandArray" :key="item.brand_id">
-          <div class="item-img"><img :src="item.brand_icon" :alt="item.brand_name"></div>
+          <div class="item-img"><img :src="item.brand_pic" :alt="item.brand_name"></div>
           <div class="item-state">
-            <p><span style="color: #FF7F00">{{ item.brand_name}}</span> 共有20款雪茄在售</p>
+            <p><span style="color: #FF7F00">{{ item.brand_name }}</span> 共有{{ item.cigar_number }}款雪茄在售</p>
           </div>
           <div class="item-desc">
-            <div class="item-desc-name"><span>{{ item.brand_name_en}}</span></div>
-            <div class="item-desc-update"><span>更新于：2024-04-11 16:02</span></div>
+            <div class="item-desc-name"><span>{{ item.brand_name_en }}</span></div>
+            <div class="item-desc-update"><span>{{ item.last_update_time }}</span></div>
           </div>
         </div>
       </div>
@@ -55,6 +47,7 @@ export default {
 .cuba-nav-box {
   width: 1400px;
 }
+
 .cuba-cigar-brand-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -81,25 +74,27 @@ export default {
   box-shadow: 4px 4px #000
 }
 
-.grid-item-info img{
+.grid-item-info img {
   width: 100%;
   height: 150px;
 }
 
-.item-state p{
+.item-state p {
   color: #5C5F5E;
 }
+
 .item-desc {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.item-desc-name{
+
+.item-desc-name {
   background-color: #e9f3ef;
   padding: 6px 10px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .item-desc-update {

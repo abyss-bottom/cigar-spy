@@ -8,6 +8,7 @@
       <router-view/>
       <div class="home_container_right"></div>
     </div>
+    <div style="height: 60px"></div>
   </div>
 </template>
 
@@ -29,7 +30,6 @@ export default {
   display: flex;
   width: 100%;
   min-width: 1400px;
-  height: 1000px;
 }
 .home_container_left, .home_container_right {
   flex: 1;
