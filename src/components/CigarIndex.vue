@@ -204,9 +204,9 @@ export default {
 }
 
 .cigar-list-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 #goods-list-item {

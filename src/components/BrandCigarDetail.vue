@@ -1,9 +1,11 @@
 <template>
   <div class="home_container_center">
     <div class="brand-info">
-      <div class="brand-pic"></div>
-      <div class="brand-name"></div>
-      <div class="brand-desc"></div>
+      <div class="brand-pic"><img :src="this.brandPic" :alt="this.brandName"></div>
+      <div class="brand-intro">
+        <div class="brand-name">{{ this.brandName }}</div>
+        <div class="brand-desc">{{ this.desc }}</div>
+      </div>
     </div>
     <div class="cigar-list-box">
       <div id="goods-list-item" v-for="item in cigarArray" :key="item.cigar_id">
@@ -12,7 +14,7 @@
           <div class="cigar-name-cn"><span>{{ item.cigar_name }}</span></div>
           <div class="cigar-name-en"><span>{{ item.cigar_name_en }}</span></div>
           <div class="cigar-price"><span>￥{{ item.cigar_price }}</span></div>
-          <div class="cigar-state"><span>{{ item.cigar_inventory >= 1 ? "库存充足" : "库存不足"}}</span></div>
+          <div class="cigar-state" :style="{ color: item.cigar_inventory >= 1 ? '#88B04B' : '#E74C3C' }"><span>{{ item.cigar_inventory >= 1 ? "库存充足" : "库存不足"}}</span></div>
           <div>
             <div class="cigar-detail"><span>查看详情</span></div>
           </div>
@@ -31,14 +33,19 @@ export default {
   data() {
     return {
       brand_id: null,
-      brandDescData: null,
+      brandPic: null,
+      brandName: null,
+      desc: null,
       cigarArray: null,
     }
   },
   methods: {
     brandDesc(brand_id) {
       getBrandDesc(brand_id).then(r => {
-        this.brandDescData = r.data;
+        const brandDescData = r.data;
+        this.brandPic = brandDescData.brand_pic;
+        this.desc = brandDescData.brand_desc;
+        this.brandName = brandDescData.brand_name;
       }).catch(e => {
         ElMessage.error(e.message)
         console.log({message: e.message, type: 'error'})
@@ -74,9 +81,9 @@ export default {
 }
 
 .cigar-list-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 #goods-list-item {
@@ -91,6 +98,7 @@ export default {
   justify-content: flex-start;
   margin-bottom: 35px;
   background-color: white;
+  padding-right: 10px;
 }
 
 #goods-list-item img {
@@ -145,7 +153,6 @@ export default {
 
 .cigar-state span {
   font-size: 15px;
-  color: #88B04B;
 }
 
 .cigar-name-cn span {
@@ -160,6 +167,31 @@ export default {
 
 .brand-info {
   display: flex;
+  justify-content: flex-start;
+  background-color: white;
+  margin-bottom: 40px;
+  padding: 10px 20px;
+  border: 2px solid #201c00;
+  border-radius: 12px;
+  transition: box-shadow .2s linear;
+}
+
+.brand-pic img{
+  width: 165px;
+  height: 150px;
+}
+
+.brand-intro {
+  display: flex;
   flex-direction: column;
+  margin: 10px 20px;
+}
+.brand-intro .brand-name {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.brand-info .brand-desc {
+  color: #5C5F5E;
 }
 </style>
