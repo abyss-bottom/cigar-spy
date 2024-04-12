@@ -1,5 +1,6 @@
 <script>
 import {getBrandData} from "@/http/api";
+import { ElMessage } from 'element-plus'
 
 export default {
   name: 'CubaCigar',
@@ -13,9 +14,13 @@ export default {
       getBrandData(1).then(r => {
         this.brandArray = r.data;
       }).catch(e => {
+        ElMessage.error(e.message)
         console.log({message: e.message, type: 'error'})
       })
     },
+    goToCigarList(brand_id) {
+      this.$router.push({ path: '/brand/detail', query: { id: brand_id } });
+    }
   },
   mounted() {
     this.brandData()
@@ -28,7 +33,7 @@ export default {
     <h1>古巴雪茄</h1>
     <div class="cuba-cigar-brand">
       <div class="cuba-cigar-brand-grid">
-        <div class="grid-item-info" v-for="item in brandArray" :key="item.brand_id">
+        <div class="grid-item-info" v-for="item in brandArray" :key="item.brand_id" @click="goToCigarList(item.brand_id)">
           <div class="item-img"><img :src="item.brand_pic" :alt="item.brand_name"></div>
           <div class="item-state">
             <p><span style="color: #FF7F00">{{ item.brand_name }}</span> 共有{{ item.cigar_number }}款雪茄在售</p>

@@ -18,6 +18,10 @@ const routes = [
             {
                 path: '/world',
                 component: () => import('../components/WorldCigar.vue')
+            },
+            {
+                path: '/brand/detail',
+                component: () => import('../components/BrandCigarDetail.vue')
             }
         ]
     },
