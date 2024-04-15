@@ -1,14 +1,14 @@
 <template>
   <div class="home_container_center">
     <div class="brand-info">
-      <div class="brand-pic"><img :src="this.brandPic" :alt="this.brandName"></div>
+      <div class="brand-pic"><img v-if="!loading" :src="this.brandPic" :alt="this.brandName"></div>
       <div class="brand-intro">
         <div class="brand-name">{{ this.brandName }}</div>
         <div class="brand-desc">{{ this.desc }}</div>
       </div>
     </div>
     <div class="cigar-list-box">
-      <div id="goods-list-item" v-for="item in cigarArray" :key="item.cigar_id">
+      <div id="goods-list-item" v-for="item in cigarArray" :key="item.category_id" @click="goToCigarDetail(item.category_id)">
         <img :src="item.cigar_pic" :alt="item.cigar_name">
         <div class="goods-info">
           <div class="cigar-name-cn"><span>{{ item.cigar_name }}</span></div>
@@ -32,6 +32,7 @@ export default {
   name: "BrandCigarDetail",
   data() {
     return {
+      loading: true,
       brand_id: null,
       brandPic: null,
       brandName: null,
@@ -43,6 +44,7 @@ export default {
     brandDesc(brand_id) {
       getBrandDesc(brand_id).then(r => {
         const brandDescData = r.data;
+        this.loading = false;
         this.brandPic = brandDescData.brand_pic;
         this.desc = brandDescData.brand_desc;
         this.brandName = brandDescData.brand_name;
@@ -59,8 +61,8 @@ export default {
         console.log({message: e.message, type: 'error'})
       })
     },
-    goToCigarList() {
-      this.$router.push('/brand/detail');
+    goToCigarDetail(category_id) {
+      this.$router.push({ path: '/cigar/detail', query: { id: category_id } });
     }
   },
   mounted() {
@@ -99,6 +101,7 @@ export default {
   margin-bottom: 35px;
   background-color: white;
   padding-right: 10px;
+  min-height: 258px;
 }
 
 #goods-list-item img {
@@ -174,10 +177,11 @@ export default {
   border: 2px solid #201c00;
   border-radius: 12px;
   transition: box-shadow .2s linear;
+  min-height: 180px;
 }
 
 .brand-pic img{
-  width: 165px;
+  width: 210px;
   height: 150px;
 }
 

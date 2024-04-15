@@ -46,6 +46,7 @@ export default {
   height: 70px;
   line-height: 55px;
   background-color: #e9f3ef;
+  overflow: hidden;
 }
 
 #nav-logo {
@@ -85,6 +86,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
 }
 
 .nav_brand_name {

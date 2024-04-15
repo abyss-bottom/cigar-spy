@@ -22,7 +22,11 @@ const routes = [
             {
                 path: '/brand/detail',
                 component: () => import('../components/BrandCigarDetail.vue')
-            }
+            },
+            {
+                path: '/cigar/detail',
+                component: () => import('../components/CigarDetail.vue')
+            },
         ]
     },
 ]

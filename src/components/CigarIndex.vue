@@ -221,6 +221,7 @@ export default {
   justify-content: flex-start;
   margin-bottom: 35px;
   background-color: white;
+  min-height: 258px;
 }
 
 #goods-list-item img {
