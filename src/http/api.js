@@ -35,10 +35,21 @@ export function getBrandDetail(brand_id) {
     })
 }
 
-export function getCigarDetail(category_id) {
+export function getCategoryIntro(category_id) {
     return service({
         method: "POST",
         url: "tanjia/category/intro",
+        data: {"id": category_id},
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+}
+
+export function getCategoryCigarData(category_id) {
+    return service({
+        method: "POST",
+        url: "tanjia/category/cigar/list",
         data: {"id": category_id},
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

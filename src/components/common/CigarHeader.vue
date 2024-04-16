@@ -69,7 +69,7 @@ export default {
 }
 
 .nav_center {
-  width: 1400px;
+  width: 1260px;
   display: flex;
   justify-content: space-between;
 }

@@ -1,18 +1,45 @@
 <script>
 
+import {getCategoryCigarData, getCategoryIntro} from "@/http/api";
+import {ElMessage} from "element-plus";
+
 export default {
   name: "CigarDetail",
   data() {
     return {
       cigar_id: null,
+      loading: true,
+      categoryData: {},
+      categoryCigarList: []
     }
   },
-  methods: {},
+  methods: {
+    categoryIntro() {
+      getCategoryIntro(this.category_id).then(r => {
+        this.categoryData = r.data;
+        console.log(this.categoryData)
+        this.loading = false;
+      }).catch(e => {
+        ElMessage.error(e.message)
+        console.log({message: e.message, type: 'error'})
+      })
+    },
+    categoryCigarDetail() {
+      getCategoryCigarData(this.category_id).then(r => {
+        this.categoryCigarList = r.data;
+      }).catch(e => {
+        ElMessage.error(e.message)
+        console.log({message: e.message, type: 'error'})
+      })
+    },
+  },
   mounted() {
+    this.categoryIntro();
+    this.categoryCigarDetail()
   },
   created() {
     // 获取传递过来的 id
-    this.cigar_id = this.$route.query.id;
+    this.category_id = this.$route.query.id;
   }
 }
 </script>
@@ -20,28 +47,68 @@ export default {
 <template>
   <div class="home_container_center">
     <div class="category-info">
-      <div class="category-pic"><img v-if="!loading"
-                                  src="https://webfile.timeforshares.com/product_profile/390/gallery/01_640.jpg?934537996"
-                                  alt="贝喜奇"></div>
-      <div class="category-intro">
-        <div class="category-name">贝喜奇</div>
-        <div class="category-property">
-          <span>品形：小罗伯图</span>
-          <span>长度：119mm</span>
-          <span>环径：52</span>
-          <span>浓度：3</span>
-        </div>
-        <div class="category-desc">Behike 是Cohiba品牌的最高端系列。首次在这三个系列上加入“Medio Tiempo”烟叶。Medio
-          Tiempo是一种非常珍稀的烟叶品种。它是指用阳植法培育的烟草植株的上两层烟叶。由于这种烟叶在烟草植株上得天独厚的位置)使它有优良好特性和风味，良好的燃烧和性强烈浓度令你感觉它独一无二的精致风味。
-        </div>
+      <div class="category-pic">
+        <img v-if="!loading" :src="this.categoryData.category_pic" :alt="this.categoryData.category_name_cn">
       </div>
+      <div class="category-intro">
+        <div class="category-name">{{ this.categoryData.category_name_cn }}</div>
+        <div class="category-property">
+          <span>品形：{{ this.categoryData.category_shape }}</span>
+          <span>长度：{{ this.categoryData.category_length }}</span>
+          <span>环径：{{ this.categoryData.category_ring }}</span>
+          <span>浓度：{{ this.categoryData.category_density }}</span>
+        </div>
+        <div class="category-desc">{{ this.categoryData.category_desc }}</div>
+      </div>
+    </div>
+    <div class="cigar-item-list">
+      <table>
+        <thead>
+        <tr>
+          <th></th>
+          <th>雪茄名称</th>
+          <th>规格</th>
+          <th>当前价格</th>
+          <th>库存状态</th>
+          <th>更新时间</th>
+          <th>来源</th>
+        </tr>
+        </thead>
+        <tbody class="ant-table-tbody">
+        <tr class="ant-table-row" v-for="item in categoryCigarList" :key="item.cigar_id">
+          <td colspan="56">
+            <div class="item-info">
+              <img :src="item.cigar_pic" :alt="item.cigar_name_cn">
+              <div>
+                {{ item.cigar_name_cn }}
+              </div>
+              <div>
+                {{ item.cigar_specs }}
+              </div>
+              <div>
+                {{ item.cigar_price_cny }}
+              </div>
+              <div>
+                {{ item.inventory }}
+              </div>
+              <div>
+                {{ item.last_update_time }}
+              </div>
+              <div>
+                <a class="toBuy" :href="item.origin">前往购买</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
 
 <style scoped>
 .home_container_center {
-  width: 1400px;
+  width: 1260px;
 }
 
 .category-info {
@@ -78,10 +145,47 @@ export default {
 .category-property {
   margin-bottom: 15px;
 }
-.category-property span{
+
+.category-property span {
   margin-right: 25px;
 }
+
 .category-info .category-desc {
   color: #5C5F5E;
+}
+
+.cigar-item-list {
+  background-color: white;
+  border: 2px solid #201c00;
+  border-radius: 12px;
+  transition: box-shadow .2s linear;
+}
+
+table {
+  width: 100%;
+}
+table tr th {
+  padding: 16px 8px;
+}
+.ant-table-row {
+  height: 80px;
+  width: 1000px;
+}
+
+.ant-table-row img {
+  height: 100px;
+  width: 100px;
+}
+
+.item-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  border-top: 1px solid #e5e5e5;
+  transform-origin: 0 0;
+}
+.item-info:hover {
+  background-color: rgba(245, 245, 245, 0.2);
 }
 </style>

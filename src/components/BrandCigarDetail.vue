@@ -79,7 +79,7 @@ export default {
 <style scoped>
 
 .home_container_center {
-  width: 1400px;
+  width: 1260px;
 }
 
 .cigar-list-box {
