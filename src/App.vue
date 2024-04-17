@@ -32,7 +32,10 @@ li {
 ul, ol {
   list-style: none;
 }
-
+a {
+  outline: none;
+  text-decoration: none;
+}
 h1 {
   font-weight: 700;
 }
