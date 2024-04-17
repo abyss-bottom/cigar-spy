@@ -56,3 +56,13 @@ export function getCategoryCigarData(category_id) {
         }
     })
 }
+
+export function getCigarRecommend() {
+    return service({
+        method: "POST",
+        url: "tanjia/cigar/recommend/list",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+}
