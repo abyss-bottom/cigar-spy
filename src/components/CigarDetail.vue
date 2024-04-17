@@ -62,53 +62,48 @@ export default {
       </div>
     </div>
     <div class="cigar-item-list">
-      <table>
-        <thead>
-        <tr>
-          <th></th>
-          <th>雪茄名称</th>
-          <th>规格</th>
-          <th>当前价格</th>
-          <th>库存状态</th>
-          <th>更新时间</th>
-          <th>来源</th>
-        </tr>
-        </thead>
-        <tbody class="ant-table-tbody">
-        <tr class="ant-table-row" v-for="item in categoryCigarList" :key="item.cigar_id">
-          <td colspan="56">
-            <div class="item-info">
-              <img :src="item.cigar_pic" :alt="item.cigar_name_cn">
-              <div>
-                {{ item.cigar_name_cn }}
-              </div>
-              <div>
-                {{ item.cigar_specs }}
-              </div>
-              <div>
-                {{ item.cigar_price_cny }}
-              </div>
-              <div>
-                {{ item.inventory }}
-              </div>
-              <div>
-                {{ item.last_update_time }}
-              </div>
-              <div>
-                <a class="toBuy" :href="item.origin">前往购买</a>
-              </div>
+      <div class="ant-table-head">
+        <div class="item-name">名称</div>
+        <div class="item-specs">规格</div>
+        <div class="item-price">价格</div>
+        <div class="item-state">库存</div>
+        <div class="item-update-time">更新时间</div>
+        <div class="goToBuy">来源</div>
+      </div>
+      <div class="ant-table-row" v-for="item in categoryCigarList" :key="item.cigar_id">
+        <div class="item-info">
+          <div class="item-detail">
+            <div class="ant-table-col item-name">
+              <div style="width: 30px"></div>
+              <div class="item-img"><img :src="item.cigar_pic" :alt="item.cigar_name_cn"></div>
+              <div style="width: 15px"></div>
+              <div class="item-name-cn">{{ item.cigar_name_cn }}</div>
             </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            <div class="ant-table-col item-specs">
+              <span>{{ item.cigar_specs }}</span>
+            </div>
+            <div class="ant-table-col item-price">
+              <span>￥{{ item.cigar_price_cny }}</span>
+            </div>
+            <div class="ant-table-col item-state">
+              <span :style="{ color: item.inventory === 0 ? '#E74C3C' : '#88B04B' }">{{ item.inventory === 0 ? '无库存' : '有库存' }}</span>
+            </div>
+            <div class="ant-table-col item-update-time">
+              <span>{{ item.last_update_time }}</span>
+            </div>
+            <div class="ant-table-col goToBuy">
+              <a :href="item.origin" target="_blank"><div>前往购买</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .home_container_center {
-  width: 1260px;
+  width: 1400px;
 }
 
 .category-info {
@@ -133,7 +128,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 10px 20px;
-  min-height: 140px;
+  min-height: 110px;
 }
 
 .category-name {
@@ -164,28 +159,103 @@ export default {
 table {
   width: 100%;
 }
+
 table tr th {
   padding: 16px 8px;
 }
-.ant-table-row {
-  height: 80px;
-  width: 1000px;
+
+.ant-table-head {
+  display: flex;
+  height: 55px;
+  margin-left: 20px;
+  align-items: center;
+  text-align: center;
 }
 
-.ant-table-row img {
-  height: 100px;
-  width: 100px;
+.item-name {
+  width: 25%;
+}
+
+.item-specs {
+  width: 15%;
+}
+
+.item-price {
+  width: 15%;
+}
+
+.item-state {
+  width: 15%;
+}
+.goToBuy {
+  width: 15%;
+}
+
+.item-update-time {
+  width: 15%;
+}
+.item-img img {
+  height: 90px;
+  width: 90px;
 }
 
 .item-info {
   position: relative;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  padding: 24px;
+  padding: 18px 0;
   border-top: 1px solid #e5e5e5;
   transform-origin: 0 0;
 }
+
 .item-info:hover {
   background-color: rgba(245, 245, 245, 0.2);
 }
+
+.item-detail {
+  flex-grow: 1;
+  display: flex;
+  font-size: 15px;
+}
+
+.ant-table-col.item-price {
+  color: #E63946;
+}
+
+.ant-table-col.item-update-time {
+  color: #5C5F5E;
+
+}
+.ant-table-col {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.ant-table-col.item-name{
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.ant-table-col.goToBuy div{
+  width: 106px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #508aff;
+  cursor: pointer;
+}
+.ant-table-col.goToBuy div:hover{
+  background: #508aff;
+}
+
+a:hover{
+  color: #ffffff;
+}
+
 </style>
