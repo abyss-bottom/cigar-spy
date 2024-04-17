@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 .cuba-nav-box {
-  width: 1260px;
+  width: 1400px;
 }
 
 .cuba-cigar-brand-grid {

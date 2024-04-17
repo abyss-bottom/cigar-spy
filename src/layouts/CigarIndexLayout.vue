@@ -29,7 +29,7 @@ export default {
 .home_container_box {
   display: flex;
   width: 100%;
-  min-width: 1260px;
+  min-width: 1400px;
 }
 .home_container_left, .home_container_right {
   flex: 1;
