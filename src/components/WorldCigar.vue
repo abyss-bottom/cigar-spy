@@ -3,7 +3,7 @@ import {getBrandData} from "@/http/api";
 import { ElMessage } from 'element-plus'
 
 export default {
-  name: 'WorldCigar',
+  name: 'CubaCigar',
   data() {
     return {
       brandArray: null,
