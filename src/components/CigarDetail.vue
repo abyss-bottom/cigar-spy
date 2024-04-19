@@ -2,9 +2,12 @@
 
 import {getCategoryCigarData, getCategoryIntro} from "@/http/api";
 import {ElMessage} from "element-plus";
+import CigarHeader from "@/components/common/CigarHeader.vue";
+import CigarNormalFree from "@/components/common/CigarNormalFree.vue";
 
 export default {
   name: "CigarDetail",
+  components: {CigarNormalFree, CigarHeader},
   data() {
     return {
       cigar_id: null,
@@ -45,59 +48,68 @@ export default {
 </script>
 
 <template>
-  <div class="home_container_center">
-    <div class="category-info">
-      <div class="category-pic">
-        <img v-if="!loading" :src="this.categoryData.category_pic" :alt="this.categoryData.category_name_cn">
-      </div>
-      <div class="category-intro">
-        <div class="category-name">{{ this.categoryData.category_name_cn }}</div>
-        <div class="category-property">
-          <span>品形：{{ this.categoryData.category_shape }}</span>
-          <span>长度：{{ this.categoryData.category_length }}</span>
-          <span>环径：{{ this.categoryData.category_ring }}</span>
-          <span>浓度：{{ this.categoryData.category_density }}</span>
+  <div id="app_main">
+    <CigarHeader/>
+    <CigarNormalFree/>
+    <div class="home_container_box">
+      <div class="home_container_left"></div>
+      <div class="home_container_center">
+        <div class="category-info">
+          <div class="category-pic">
+            <img v-if="!loading" :src="this.categoryData.category_pic" :alt="this.categoryData.category_name_cn">
+          </div>
+          <div class="category-intro">
+            <div class="category-name">{{ this.categoryData.category_name_cn }}</div>
+            <div class="category-property">
+              <span>品形：{{ this.categoryData.category_shape }}</span>
+              <span>长度：{{ this.categoryData.category_length }}</span>
+              <span>环径：{{ this.categoryData.category_ring }}</span>
+              <span>浓度：{{ this.categoryData.category_density }}</span>
+            </div>
+            <div class="category-desc">{{ this.categoryData.category_desc }}</div>
+          </div>
         </div>
-        <div class="category-desc">{{ this.categoryData.category_desc }}</div>
-      </div>
-    </div>
-    <div class="cigar-item-list">
-      <div class="ant-table-head">
-        <div class="item-name">名称</div>
-        <div class="item-specs">规格</div>
-        <div class="item-price">价格</div>
-        <div class="item-state">库存</div>
-        <div class="item-update-time">更新时间</div>
-        <div class="goToBuy">来源</div>
-      </div>
-      <div class="ant-table-row" v-for="item in categoryCigarList" :key="item.cigar_id">
-        <div class="item-info">
-          <div class="item-detail">
-            <div class="ant-table-col item-name">
-              <div style="width: 30px"></div>
-              <div class="item-img"><img :src="item.cigar_pic" :alt="item.cigar_name_cn"></div>
-              <div style="width: 15px"></div>
-              <div class="item-name-cn">{{ item.cigar_name_cn }}</div>
-            </div>
-            <div class="ant-table-col item-specs">
-              <span>{{ item.cigar_specs }}</span>
-            </div>
-            <div class="ant-table-col item-price">
-              <span>￥{{ item.cigar_price_cny }}</span>
-            </div>
-            <div class="ant-table-col item-state">
-              <span :style="{ color: item.inventory === 0 ? '#E74C3C' : '#88B04B' }">{{ item.inventory === 0 ? '无库存' : '有库存' }}</span>
-            </div>
-            <div class="ant-table-col item-update-time">
-              <span>{{ item.last_update_time }}</span>
-            </div>
-            <div class="ant-table-col goToBuy">
-              <a :href="item.origin" target="_blank"><div>前往购买</div></a>
+        <div class="cigar-item-list">
+          <div class="ant-table-head">
+            <div class="item-name">名称</div>
+            <div class="item-specs">规格</div>
+            <div class="item-price">价格</div>
+            <div class="item-state">库存</div>
+            <div class="item-update-time">更新时间</div>
+            <div class="goToBuy">来源</div>
+          </div>
+          <div class="ant-table-row" v-for="item in categoryCigarList" :key="item.cigar_id">
+            <div class="item-info">
+              <div class="item-detail">
+                <div class="ant-table-col item-name">
+                  <div style="width: 30px"></div>
+                  <div class="item-img"><img :src="item.cigar_pic" :alt="item.cigar_name_cn"></div>
+                  <div style="width: 15px"></div>
+                  <div class="item-name-cn">{{ item.cigar_name_cn }}</div>
+                </div>
+                <div class="ant-table-col item-specs">
+                  <span>{{ item.cigar_specs }}</span>
+                </div>
+                <div class="ant-table-col item-price">
+                  <span>￥{{ item.cigar_price_cny }}</span>
+                </div>
+                <div class="ant-table-col item-state">
+                  <span :style="{ color: item.inventory === 0 ? '#E74C3C' : '#88B04B' }">{{ item.inventory === 0 ? '无库存' : '有库存' }}</span>
+                </div>
+                <div class="ant-table-col item-update-time">
+                  <span>{{ item.last_update_time }}</span>
+                </div>
+                <div class="ant-table-col goToBuy">
+                  <a :href="item.origin" target="_blank"><div>前往购买</div></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="home_container_right"></div>
     </div>
+    <div style="height: 60px"></div>
   </div>
 </template>
 

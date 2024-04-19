@@ -1,9 +1,12 @@
 <script>
 import {getBrandData} from "@/http/api";
 import { ElMessage } from 'element-plus'
+import CigarHeader from "@/components/common/CigarHeader.vue";
+import CigarNormalFree from "@/components/common/CigarNormalFree.vue";
 
 export default {
   name: 'CubaCigar',
+  components: {CigarNormalFree, CigarHeader},
   data() {
     return {
       brandArray: null,
@@ -29,23 +32,33 @@ export default {
 </script>
 
 <template>
-  <div class="cuba-nav-box">
-    <h1>世界雪茄</h1>
-    <div class="cuba-cigar-brand">
-      <div class="cuba-cigar-brand-grid">
-        <div class="grid-item-info" v-for="item in brandArray" :key="item.brand_id" @click="goToCigarList(item.brand_id)">
-          <div class="item-img"><img :src="item.brand_pic" :alt="item.brand_name"></div>
-          <div class="item-state">
-            <p><span style="color: #FF7F00">{{ item.brand_name }}</span> 共有{{ item.cigar_number }}款雪茄在售</p>
-          </div>
-          <div class="item-desc">
-            <div class="item-desc-name"><span>{{ item.brand_name_en }}</span></div>
-            <div class="item-desc-update"><span>{{ item.last_update_time }}</span></div>
+  <div id="app_main">
+    <CigarHeader/>
+    <CigarNormalFree/>
+    <div class="home_container_box">
+    <div class="home_container_left"></div>
+    <div class="cuba-nav-box">
+      <h1>世界雪茄</h1>
+      <div class="cuba-cigar-brand">
+        <div class="cuba-cigar-brand-grid">
+          <div class="grid-item-info" v-for="item in brandArray" :key="item.brand_id" @click="goToCigarList(item.brand_id)">
+            <div class="item-img"><img :src="item.brand_pic" :alt="item.brand_name"></div>
+            <div class="item-state">
+              <p><span style="color: #FF7F00">{{ item.brand_name }}</span> 共有{{ item.cigar_number }}款雪茄在售</p>
+            </div>
+            <div class="item-desc">
+              <div class="item-desc-name"><span>{{ item.brand_name_en }}</span></div>
+              <div class="item-desc-update"><span>{{ item.last_update_time }}</span></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="home_container_right"></div>
+    </div>
+    <div style="height: 60px"></div>
   </div>
+
 </template>
 
 <style scoped>

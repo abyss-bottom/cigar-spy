@@ -1,35 +1,48 @@
 <template>
-  <div class="home_container_center">
-    <div class="brand-info">
-      <div class="brand-pic"><img v-if="!loading" :src="this.brandPic" :alt="this.brandName"></div>
-      <div class="brand-intro">
-        <div class="brand-name">{{ this.brandName }}</div>
-        <div class="brand-desc">{{ this.desc }}</div>
-      </div>
-    </div>
-    <div class="cigar-list-box">
-      <div id="goods-list-item" v-for="item in cigarArray" :key="item.category_id" @click="goToCigarDetail(item.category_id)">
-        <img :src="item.cigar_pic" :alt="item.cigar_name">
-        <div class="goods-info">
-          <div class="cigar-name-cn"><span>{{ item.cigar_name }}</span></div>
-          <div class="cigar-name-en"><span>{{ item.cigar_name_en }}</span></div>
-          <div class="cigar-price"><span>￥{{ item.cigar_price }}</span></div>
-          <div class="cigar-state" :style="{ color: item.cigar_inventory >= 1 ? '#88B04B' : '#E74C3C' }"><span>{{ item.cigar_inventory >= 1 ? "库存充足" : "库存不足"}}</span></div>
-          <div>
-            <div class="cigar-detail"><span>查看详情</span></div>
+  <div id="app_main">
+    <CigarHeader/>
+    <CigarNormalFree/>
+    <div class="home_container_box">
+      <div class="home_container_left"></div>
+      <div class="home_container_center">
+        <div class="brand-info">
+          <div class="brand-pic"><img v-if="!loading" :src="this.brandPic" :alt="this.brandName"></div>
+          <div class="brand-intro">
+            <div class="brand-name">{{ this.brandName }}</div>
+            <div class="brand-desc">{{ this.desc }}</div>
+          </div>
+        </div>
+        <div class="cigar-list-box">
+          <div id="goods-list-item" v-for="item in cigarArray" :key="item.category_id" @click="goToCigarDetail(item.category_id)">
+            <img :src="item.cigar_pic" :alt="item.cigar_name">
+            <div class="goods-info">
+              <div class="cigar-name-cn"><span>{{ item.cigar_name }}</span></div>
+              <div class="cigar-name-en"><span>{{ item.cigar_name_en }}</span></div>
+              <div class="cigar-price"><span>￥{{ item.cigar_price }}</span></div>
+              <div class="cigar-state" :style="{ color: item.cigar_inventory >= 1 ? '#88B04B' : '#E74C3C' }"><span>{{ item.cigar_inventory >= 1 ? "库存充足" : "库存不足"}}</span></div>
+              <div>
+                <div class="cigar-detail"><span>查看详情</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="home_container_right"></div>
     </div>
+    <div style="height: 60px"></div>
   </div>
+
 </template>
 
 <script>
 import {getBrandDesc, getBrandDetail} from "@/http/api";
 import {ElMessage} from "element-plus";
+import CigarHeader from "@/components/common/CigarHeader.vue";
+import CigarNormalFree from "@/components/common/CigarNormalFree.vue";
 
 export default {
   name: "BrandCigarDetail",
+  components: {CigarNormalFree, CigarHeader},
   data() {
     return {
       loading: true,

@@ -9,7 +9,7 @@ export default {}
 </script>
 
 <style>
-
+@import "components/common/shareMain.css";
 html, body {
   padding: 0;
   margin: 0;

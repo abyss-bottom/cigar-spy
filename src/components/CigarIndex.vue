@@ -1,34 +1,46 @@
 <template>
-  <div class="home_container_center">
-    <div class="hot-subject">
-      实时库存监控
-    </div>
-    <div class="cigar-list-box">
+  <div id="app_main">
+    <CigarHeader/>
+    <CigarNormalFree/>
+    <div class="home_container_box">
+      <div class="home_container_left"></div>
+      <div class="home_container_center">
+        <div class="hot-subject">
+          实时库存监控
+        </div>
+        <div class="cigar-list-box">
 
-      <div id="goods-list-item" v-for="item in cigarArray" :key="item.cigar_id">
-        <img :src="item.cigar_pic" :alt="item.cigar_name_cn">
-        <a :href="item.origin" target="_blank">
-          <div class="goods-info">
-            <div class="cigar-name-cn"><span>{{ item.cigar_name_cn }}</span></div>
-            <div class="cigar-name-en"><span>{{ item.cigar_name_en }}</span></div>
-            <div class="cigar-price"><span>￥{{ item.cigar_price_cny }}</span></div>
-            <div class="cigar-state"><span>库存充足</span></div>
-            <div>
-              <div class="cigar-detail"><span>前往购买</span></div>
-            </div>
+          <div id="goods-list-item" v-for="item in cigarArray" :key="item.cigar_id">
+            <img :src="item.cigar_pic" :alt="item.cigar_name_cn">
+            <a :href="item.origin" target="_blank">
+              <div class="goods-info">
+                <div class="cigar-name-cn"><span>{{ item.cigar_name_cn }}</span></div>
+                <div class="cigar-name-en"><span>{{ item.cigar_name_en }}</span></div>
+                <div class="cigar-price"><span>￥{{ item.cigar_price_cny }}</span></div>
+                <div class="cigar-state"><span>库存充足</span></div>
+                <div>
+                  <div class="cigar-detail"><span>前往购买</span></div>
+                </div>
+              </div>
+            </a>
           </div>
-        </a>
+        </div>
       </div>
+      <div class="home_container_right"></div>
     </div>
+    <div style="height: 60px"></div>
   </div>
 </template>
 
 <script>
 import {getCigarRecommend} from "@/http/api";
 import {ElMessage} from "element-plus";
+import CigarHeader from "@/components/common/CigarHeader.vue";
+import CigarNormalFree from "@/components/common/CigarNormalFree.vue";
 
 export default {
   name: 'CigarIndex',
+  components: {CigarNormalFree, CigarHeader},
   data() {
     return {
       activeTab: null,
@@ -52,7 +64,6 @@ export default {
 </script>
 
 <style scoped>
-
 .home_container_center {
   width: 1400px;
 }
