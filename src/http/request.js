@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const website = "http://127.0.0.1:8000"
+export const website = "https://api.tanjia.site"
 const service = axios.create({
     baseURL: website,
 })
