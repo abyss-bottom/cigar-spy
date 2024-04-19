@@ -1,30 +1,34 @@
-import {createRouter, createWebHistory} from 'vue-router'
-
+import { createRouter, createWebHashHistory } from 'vue-router'
+import CigarIndex from "@/components/CigarIndex.vue";
+import CubaCigar from "@/components/CubaCigar.vue";
+import WorldCigar from "@/components/WorldCigar.vue";
+import BrandCigarDetail from "@/components/BrandCigarDetail.vue";
+import CigarDetail from "@/components/CigarDetail.vue";
 
 const routes = [
     {
         path: '/',
-        component: () => import('../components/CigarIndex.vue')
+        component: CigarIndex
     },
     {
         path: '/cuba',
-        component: () => import('../components/CubaCigar.vue')
+        component: CubaCigar
     },
     {
         path: '/world',
-        component: () => import('../components/WorldCigar.vue')
+        component: WorldCigar
     },
     {
         path: '/brand/detail',
-        component: () => import('../components/BrandCigarDetail.vue')
+        component: BrandCigarDetail
     },
     {
         path: '/cigar/detail',
-        component: () => import('../components/CigarDetail.vue')
+        component: CigarDetail
     },
 ]
 
 export default createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
 })
