@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import CigarIndex from "@/components/CigarIndex.vue";
 import CubaCigar from "@/components/CubaCigar.vue";
 import WorldCigar from "@/components/WorldCigar.vue";
@@ -29,6 +29,6 @@ const routes = [
 ]
 
 export default createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
 })
